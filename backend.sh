@@ -16,6 +16,7 @@ unzip /tmp/backend.zip
 cd /app
 npm install
 
+
 dnf install mysql -y
 
 mysql -h 172.31.36.84 -uroot -pExpenseApp@1 < /app/schema/backend.sql
