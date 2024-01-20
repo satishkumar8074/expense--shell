@@ -17,8 +17,6 @@ useradd expense &>>log_file
 echo $?
 echo -e "${color} creating the app \e[0m"
 mkdir /app &>>log_file
-echo $?
-echo -e "${color} unzipping the file \e[0m"
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
 echo $?
 echo -e "${color} changing to the application and unzipping the file  \e[0m"
