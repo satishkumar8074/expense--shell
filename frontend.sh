@@ -1,33 +1,34 @@
-echo -e "\e[36m installing nginx \e[0m"
-dnf install nginx -y &>>\tmp\expense.log
+log_file=\tmp\expense.logx
+color="\e[36m"
+echo -e ${color} installing nginx \e[0m"
+dnf install nginx -y &>>$log_file
 echo $?
-echo -e "\e[36m copy expense config file \e[0m"
+echo -e ${color} copy expense config file \e[0m"
 
-cp expense.conf /etc/nginx/default.d/expense.conf &>>\tmp\expense.logx
-echo $?
-
-echo -e "\e[36m remove old data \e[0m"
-
-rm -rf /usr/share/nginx/html/* &>>\tmp\expense.log &>>\tmp\expense.log
+cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
 echo $?
 
+echo -e ${color} remove old data \e[0m"
 
-echo -e "\e[36m download frontend application \e[0m"
-
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>\tmp\expense.log
+rm -rf /usr/share/nginx/html/* &>>\tmp\expense.log &>>$log_file
 echo $?
 
-echo -e "\e[36m extarcting the downloaded application content \e[0m"
 
+echo -e ${color} download frontend application \e[0m"
 
-cd /usr/share/nginx/html &>>\tmp\expense.log
-unzip /tmp/frontend.zip &>>\tmp\expense.log
+curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
 echo $?
 
-echo -e "\e[36m starting nginx service \e[0m"
+echo -e ${color} extarcting the downloaded application content \e[0m"
 
-systemctl enable nginx &>>\tmp\expense.log
-systemctl restart nginx &>>\tmp\expense.log
+
+cd /usr/share/nginx/html &>>$log_file
+unzip /tmp/frontend.zip &>>$log_file $?
+
+echo -e ${color} starting nginx service \e[0m"
+
+systemctl enable nginx &>>$log_file
+systemctl restart nginx &>>$log_file
 echo $?
 
 
