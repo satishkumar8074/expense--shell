@@ -1,5 +1,6 @@
 log_file=\tmp\expense.logx
 color="\e[31m"
+
 echo -e "${color} diabling nodejs \e[0m"
 dnf module disable nodejs -y &>>log_file
 if  [ $? -eq 0 ]; then
@@ -37,6 +38,8 @@ echo -e "\e[32m success \e[0m"
 else
 echo -e "\e[33m failure \e[0m"
 fi
+
+if [ ! -d /app]; then
 echo -e "${color} creating the app \e[0m"
 mkdir /app &>>log_file
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>log_file
