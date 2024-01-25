@@ -83,8 +83,3 @@ echo -e "${color} reloading the daemon  \e[0m"
 systemctl daemon-reload &>>log_file
 systemctl enable backend &>>log_file
 systemctl restart backend &>>log_file
-if  [ $? -eq 0 ]; then
-echo -e "\e[32m success \e[0m"
-else
-echo -e "\e[33m failure \e[0m"
-fi
