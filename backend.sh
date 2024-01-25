@@ -1,6 +1,7 @@
 log_file=\tmp\expense.logx
 color="\e[31m"
 
+mysql_root_password=$1
 echo -e "${color} diabling nodejs \e[0m"
 dnf module disable nodejs -y &>>log_file
 if  [ $? -eq 0 ]; then
@@ -72,7 +73,7 @@ else
 echo -e "\e[33m failure \e[0m"
 fi
 echo -e "${color} setting the password to expense app  \e[0m"
-mysql -h 172.31.36.84 -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>log_file
+mysql -h 172.31.36.84 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>log_file
 if  [ $? -eq 0 ]; then
 echo -e "\e[32m success \e[0m"
 else
